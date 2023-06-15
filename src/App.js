@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
-
 function App() {
   return (
     <>
-    <h1>Props Demo</h1>
-    <MessageDemo  username="mayuri" email="m@gmail.com"/>
-    <MessageDemo  username="cdac" email="c@gmail.com"/>
-    <MessageDemo  username="Student" email="s@gmail.com"/>
+      <h1>Props Demo</h1>
+      <ListDemo />
     </>
   );
 }
 
-function MessageDemo({ username,email }){
- 
+function ListDemo() {
+  let data = "Hello Universe";
+  let list = ["delhi", "calcutta", "chennai"];
 
   return (
     <>
-    <h1>Hello {username} {email}</h1>
+      <h1>{data}</h1>
+
+      {/** foreach is consumer function */}
+      {list.forEach((item) => item)}
+
+      {/** map is input/output */}
+      {/** OUTPUT BCZ OF THIS */}
+      {list.map((item) => item)}
     </>
   );
 }
+
 export default App;
