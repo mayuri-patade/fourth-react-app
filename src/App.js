@@ -5,14 +5,20 @@ function App() {
   return (
     <>
     <h1>Props Demo</h1>
-    <MessageDemo />
-    <MessageDemo />
-    <MessageDemo />
+    <MessageDemo message="Hi" username="mayuri"/>
+    <MessageDemo message="Hello" username="cdac"/>
+    <MessageDemo messsage="Hey" username="Student"/>
     </>
   );
 }
 
-function MessageDemo(){
-  return <><h1>Hello Message</h1></>
+function MessageDemo(props){
+  console.log("i am inside",props);
+
+  return (
+    <>
+    <h1>Hello {props.username}</h1>
+    </>
+  );
 }
 export default App;
