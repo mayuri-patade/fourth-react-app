@@ -11,17 +11,22 @@ function App() {
 
 function MyTodo() {
   //let todo = {task: ""};
-  let [todo, setTodo] = useState({ task: "" });
+  let [todo, setTodo] = useState({ task: "", description: "" });
 
   let handleChangeTaskAction = (e) => {
-    console.log(e.target);
-
     let newTodo = { ...todo, task: e.target.value };
     setTodo(newTodo);
   };
 
+  let handleChangeDescriptionAction = (e) => {
+    //console.log(e.target);
+    let newTodo = { ...todo, description: e.target.value };
+    setTodo(newTodo);
+  };
+
   let addTodoAction = () => {
-    alert(todo.task);
+    alert(todo.task + todo.description);
+    console.log(todo);
   };
 
   return (
@@ -33,6 +38,16 @@ function MyTodo() {
         value={todo.task}
         onChange={handleChangeTaskAction}
       />
+
+      <textarea
+        className="form-control"
+        placeholder="Description"
+        cols="30"
+        rows="3"
+        value={todo.description}
+        onChange={handleChangeDescriptionAction}
+      ></textarea>
+
       <input type="button" value="Add Todo" onClick={addTodoAction} />
     </>
   );
