@@ -10,23 +10,24 @@ function App() {
 }
 
 function MyTodo() {
-  //let todo = {task: ""};
   let [todo, setTodo] = useState({ task: "", description: "" });
 
-  let handleChangeTaskAction = (e) => {
+  let handleChnageTaskAction = (e) => {
     let newTodo = { ...todo, task: e.target.value };
     setTodo(newTodo);
   };
 
   let handleChangeDescriptionAction = (e) => {
-    //console.log(e.target);
+    // console.log(e.target);
     let newTodo = { ...todo, description: e.target.value };
     setTodo(newTodo);
   };
 
-  let addTodoAction = () => {
-    alert(todo.task + todo.description);
+  let addTodoAction = async () => {
     console.log(todo);
+
+    let url = `http://localhost:4000/addtodo?task=${todo.task}&description=${todo.description}`;
+    await fetch(url);
   };
 
   return (
@@ -34,16 +35,16 @@ function MyTodo() {
       <input
         className="form-control"
         type="text"
-        placeholder="Enter Task"
+        placeholder="Enter task"
         value={todo.task}
-        onChange={handleChangeTaskAction}
+        onChange={handleChnageTaskAction}
       />
 
       <textarea
         className="form-control"
-        placeholder="Description"
         cols="30"
         rows="3"
+        placeholder="Enter Description"
         value={todo.description}
         onChange={handleChangeDescriptionAction}
       ></textarea>
