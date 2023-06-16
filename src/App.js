@@ -3,53 +3,74 @@ import { useRef, useState } from "react";
 function App() {
   return (
     <>
-      <h1>My Todo</h1>
-      <MyTodo />
+      <h1>My Project</h1>
+      <ListDemo />
     </>
   );
 }
 
-function MyTodo() {
-  let [todo, setTodo] = useState({ task: "", description: "" });
+function ListDemo() {
+  let inputRef = useRef();
+  let [list, setList] = useState(["delhi"]);
 
-  let handleChnageTaskAction = (e) => {
-    let newTodo = { ...todo, task: e.target.value };
-    setTodo(newTodo);
-  };
+  let addItemAction = () => {
+    let inputValue = inputRef.current.value;
+    let newList = [inputValue, ...list];
+    setList(newList);
 
-  let handleChangeDescriptionAction = (e) => {
-    // console.log(e.target);
-    let newTodo = { ...todo, description: e.target.value };
-    setTodo(newTodo);
-  };
-
-  let addTodoAction = async () => {
-    console.log(todo);
-
-    let url = `http://localhost:4000/addtodo?task=${todo.task}&description=${todo.description}`;
-    await fetch(url);
+    inputRef.current.value = "";
   };
 
   return (
     <>
-      <input
-        className="form-control"
-        type="text"
-        placeholder="Enter task"
-        value={todo.task}
-        onChange={handleChnageTaskAction}
-      />
+      <div
+        className="row justify-content-center align-items-center"
+        style={{ height: "100vh" }}
+      >
+        <div className="col-sm-12 col-md-6">
+          <h1>Registraton App</h1>
+          <input
+            className="form-control"
+            type="text"
+            id="id1"
+            ref={inputRef}
+            placeholder="Enter user input..."
+          />
+          <input
+            className="form-control"
+            type="text"
+            id="id1"
+            ref={inputRef}
+            placeholder="Enter Password..."
+          />
+          <input
+            className="form-control"
+            type="text"
+            id="id1"
+            ref={inputRef}
+            placeholder="Enter Email..."
+          />
+          <input type="button" value="Login" onClick={addItemAction} />
+        </div>
+      </div>
+    </>
+  );
+}
 
-      <textarea
-        className="form-control"
-        cols="30"
-        rows="3"
-        placeholder="Enter Description"
-        value={todo.description}
-        onChange={handleChangeDescriptionAction}
-      ></textarea>
-
-      <input type="button" value="Add Todo" onClick={addTodoAction} />
+function MessageDemo({ message }) {
+  return (
+    <>
+      <h1>Hello {message}</h1>
+      <p>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus,
+        dolorem quas sequi tenetur quo odit cupiditate assumenda voluptas
+        quibusdam blanditiis voluptatem quis mollitia eaque molestiae animi,
+        provident eligendi facilis incidunt.
+      </p>
+      <div>
+        <input type="button" value="&#128077;" />
+        <input type="button" value="&#128078;" />
+      </div>
     </>
   );
 }
