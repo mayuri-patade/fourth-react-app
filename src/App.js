@@ -18,6 +18,8 @@ function App() {
           {/** 1 Route means 1 Page */}
           <Route path="/" element={<h1>Hello</h1>} />
           <Route path="/login" element={<AppLogin />} />
+
+          {/** Private Needs Protection */}
           <Route
             path="/home"
             element={
@@ -42,14 +44,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route
-            path="/registration"
-            element={
-              <ProtectedRoute>
-                <MyRegistration />
-              </ProtectedRoute>
-            }
-          />
+
           <Route
             path="/user-list"
             element={
@@ -58,14 +53,10 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route
-            path="/validation-demo"
-            element={
-              <ProtectedRoute>
-                <ValidationDemo />
-              </ProtectedRoute>
-            }
-          />
+
+          <Route path="/registration" element={<MyRegistration />} />
+          <Route path="/validation-demo" element={<ValidationDemo />} />
+
           <Route path="*" element={<h1>Page Not Found</h1>} />
         </Routes>
       </BrowserRouter>
@@ -73,9 +64,9 @@ function App() {
   );
 }
 
+// lets protect the pages
 function ProtectedRoute({ children }) {
-  let loginStatus = localStorage.getItem("login");
-
+  let loginStatus = localStorage.getItem("loginStatus");
   if (!loginStatus) {
     return <Navigate to={"/login"} replace={true} />;
   }

@@ -5,11 +5,12 @@ function MyNavigationLinks() {
   let navigate = useNavigate();
 
   const logOutAction = () => {
-    localStorage.removeItem("login");
+    localStorage.removeItem("loginStatus");
     navigate("/login", { replace: true });
   };
 
-  let loginStatus = localStorage.getItem("login");
+  // Assistance of LocalStorage
+  let loginStatus = localStorage.getItem("loginStatus");
   if (!loginStatus) {
     return <></>;
   }
